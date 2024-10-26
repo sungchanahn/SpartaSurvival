@@ -288,6 +288,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 959f2025-b843-4b2b-8c5c-d3d4a0290d2b
     m_ActionName: Player/GrapplingHook[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 18327775}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGliding
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27d2f90f-74e6-4ae5-ba81-7fbe6c45b96e
+    m_ActionName: Player/Gliding[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -309,7 +325,7 @@ MonoBehaviour:
   jumpPower: 80
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 71
 --- !u!114 &18327776
 MonoBehaviour:
   m_ObjectHideFlags: 0

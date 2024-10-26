@@ -52,6 +52,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnGliding(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed && !IsGrounded())
+        {
+            _rigidbody.drag = 20f;
+        }
+        else if (context.phase == InputActionPhase.Canceled || IsGrounded())
+        {
+            _rigidbody.drag = 0f;
+        }
+    }
+
     private bool IsGrounded()
     {
         Ray[] rays = new Ray[4]

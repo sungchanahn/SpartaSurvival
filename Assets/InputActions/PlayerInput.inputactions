@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Gliding",
+                    "type": "Button",
+                    "id": "27d2f90f-74e6-4ae5-ba81-7fbe6c45b96e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "MultiTap,Hold(duration=0.1)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Inventory",
                     "type": "Button",
                     "id": "e65221dc-b278-4218-b9a6-170c602ceaf7",
@@ -188,6 +197,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "GrapplingHook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17020c1b-0064-4eb6-9794-8bff68424f05",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Gliding",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
