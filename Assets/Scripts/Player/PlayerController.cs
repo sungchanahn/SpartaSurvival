@@ -11,8 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float useStamina;
     private Vector2 curMovementInput;
-    public float holdingTime;
+    private float holdingTime;
+    private bool isGliding;
 
     [Header("Look")]
     [SerializeField] private Transform cameraContainer;
@@ -33,6 +35,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update()
+    {
+        if (isGliding)
+        {
+            CharacterManager.Instance.Player.Condition.UseStamina(useStamina * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
@@ -78,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded())
+        if (IsGrounded() && CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
         {
             if (context.duration < 0.2f)
             {
@@ -91,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
             if (context.phase == InputActionPhase.Performed)
             {
+                CharacterManager.Instance.Player.Condition.UseStamina(useStamina);
                 _rigidbody.AddForce(Vector2.up * jumpPower * holdingTime, ForceMode.Impulse);
             }
         }
@@ -98,12 +109,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnGliding(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && !IsGrounded())
+        if (context.phase == InputActionPhase.Performed && !IsGrounded() && CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
         {
+            isGliding = true;
             _rigidbody.drag = 15f;
         }
-        else if (context.phase == InputActionPhase.Canceled || IsGrounded())
+        else if (context.phase == InputActionPhase.Canceled || IsGrounded() || !CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
         {
+            isGliding = false;
             _rigidbody.drag = 0f;
         }
     }
