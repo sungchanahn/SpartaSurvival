@@ -12,6 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayerMask;
     private Vector2 curMovementInput;
 
+    [Header("Look")]
+    [SerializeField] private Transform cameraContainer;
+    [SerializeField] private float minXLook;
+    [SerializeField] private float maxXLook;
+    [SerializeField] private float lookSensitivity;
+    private float camCurXRot;
+    private Vector2 mouseDelta;
+    public bool CanLook = true;
+
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -19,9 +28,22 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void LateUpdate()
+    {
+        if (CanLook)
+        {
+            CameraLook();
+        }
     }
 
     private void Move()
@@ -30,6 +52,14 @@ public class PlayerController : MonoBehaviour
         dir *= moveSpeed;
         dir.y = _rigidbody.velocity.y;
         _rigidbody.velocity = dir;
+    }
+    private void CameraLook()
+    {
+        camCurXRot += mouseDelta.y * lookSensitivity;
+        camCurXRot = Mathf.Clamp(camCurXRot, minXLook, maxXLook);
+        cameraContainer.localEulerAngles = new Vector3(-camCurXRot, 0, 0);
+
+        transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -62,6 +92,11 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.drag = 0f;
         }
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        mouseDelta = context.ReadValue<Vector2>();
     }
 
     private bool IsGrounded()
