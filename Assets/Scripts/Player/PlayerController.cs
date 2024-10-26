@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayerMask;
     private Vector2 curMovementInput;
+    public float holdingTime;
 
     [Header("Look")]
     [SerializeField] private Transform cameraContainer;
@@ -76,9 +78,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (IsGrounded())
         {
-            _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            if (context.duration < 0.2f)
+            {
+                holdingTime = 1f;
+            }
+            else
+            {
+                holdingTime = Mathf.Min((float)context.duration + 1f, 1.5f);
+            }
+
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _rigidbody.AddForce(Vector2.up * jumpPower * holdingTime, ForceMode.Impulse);
+            }
         }
     }
 
@@ -86,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed && !IsGrounded())
         {
-            _rigidbody.drag = 20f;
+            _rigidbody.drag = 15f;
         }
         else if (context.phase == InputActionPhase.Canceled || IsGrounded())
         {

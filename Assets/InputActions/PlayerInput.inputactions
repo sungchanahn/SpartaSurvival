@@ -29,7 +29,7 @@
                     "id": "350a741a-65c9-4d8c-81c2-9a3f6a12ff3f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(pressPoint=0.2,behavior=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -38,7 +38,7 @@
                     "id": "27d2f90f-74e6-4ae5-ba81-7fbe6c45b96e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "MultiTap,Hold(duration=0.1)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -203,7 +203,7 @@
                 {
                     "name": "",
                     "id": "17020c1b-0064-4eb6-9794-8bff68424f05",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
