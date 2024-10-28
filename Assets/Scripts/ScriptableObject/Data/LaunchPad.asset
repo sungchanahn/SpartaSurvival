@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c53f367a035e29442a7d029a6ceb76e7, type: 3}
-  m_Name: WoodBoat
+  m_Name: LaunchPad
   m_EditorClassIdentifier: 
-  displayName: "\uB098\uB8FB\uBC30"
-  description: "\uD0C0\uBA74 \uC2DC\uC791\uC758 \uC12C\uAE4C\uC9C0 \uC774\uB3D9\uC2DC\uCF1C\uC900\uB2E4."
-  utilization: "E\uB97C \uB20C\uB7EC\uC11C \uCD9C\uBC1C"
+  displayName: "\uBC1C\uC0AC\uB300"
+  description: "\uC704\uB85C \uB192\uAC8C \uBC1C\uC0AC\uC2DC\uD0A8\uB2E4."
+  utilization: "E\uB97C \uB20C\uB7EC\uC11C \uBC1C\uC0AC"

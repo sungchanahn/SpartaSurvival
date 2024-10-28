@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        string str = $"{data.displayName}\n{data.description}";
+        string str = $"{data.displayName}\n{data.description}\n{data.utilization}";
         return str;
     }
 

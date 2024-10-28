@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
     public bool CanLook = true;
 
-    private Rigidbody _rigidbody;
+    public Action Inventory;
+    public Rigidbody _rigidbody;
 
     private void Awake()
     {
@@ -144,5 +145,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            Inventory?.Invoke();
+            ToggleCursor();
+        }
+    }
+
+    private void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
+        CanLook = !toggle;
     }
 }

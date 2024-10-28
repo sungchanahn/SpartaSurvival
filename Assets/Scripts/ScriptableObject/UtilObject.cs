@@ -8,4 +8,5 @@ public class UtilObjectData : ScriptableObject
     [Header("Info")]
     public string displayName;
     public string description;
+    public string utilization;
 }
