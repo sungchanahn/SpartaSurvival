@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -194,6 +195,10 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.Hunger:
                         condition.Eat(selectedItem.consumables[i].value);
                         break;
+                    case ConsumableType.Buff:
+                        controller.BuffSize(selectedItem.consumables[i].value);
+                        break;
+
                 }
             }
             RemoveSelectedItem();

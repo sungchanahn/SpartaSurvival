@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private float useStamina;
+    [SerializeField] private Transform mainMesh;
     private Vector2 curMovementInput;
     private float holdingTime;
     private bool isGliding;
@@ -131,10 +132,10 @@ public class PlayerController : MonoBehaviour
     {
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (-transform.up * 0.19f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (-transform.up * 0.19f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (-transform.up * 0.19f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (-transform.up * 0.19f), Vector3.down)
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)
@@ -161,5 +162,21 @@ public class PlayerController : MonoBehaviour
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         CanLook = !toggle;
+    }
+
+    public void BuffSize(float buffValue)
+    {
+        StartCoroutine(BuffSizeCoroutine(buffValue));
+    }
+
+    private IEnumerator BuffSizeCoroutine(float buffValue)
+    {
+        Vector3 temp1 = transform.localScale;
+        float temp2 = _rigidbody.mass;
+        transform.localScale *= buffValue;
+        _rigidbody.mass *= buffValue;
+        yield return new WaitForSeconds(10f);
+        transform.localScale = temp1;
+        _rigidbody.mass = temp2;
     }
 }

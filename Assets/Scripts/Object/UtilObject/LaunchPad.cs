@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaunchPad : MonoBehaviour, IInteractable
+public class LaunchPad : UtilObject
 {
-    public UtilObjectData data;
     [SerializeField] private float launchForce;
 
-    public string GetInteractPrompt()
-    {
-        string str = $"{data.displayName}\n{data.description}\n{data.utilization}";
-        return str;
-    }
-
-    public void OnInteract()
+    public override void OnInteract()
     {
         UtilizeLaunchPad();
     }
