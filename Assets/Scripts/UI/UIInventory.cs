@@ -30,12 +30,12 @@ public class UIInventory : MonoBehaviour
 
     private void Start()
     {
-        controller = CharacterManager.Instance.Player.Controller;
-        condition = CharacterManager.Instance.Player.Condition;
-        dropPosition = CharacterManager.Instance.Player.DropPosition;
+        controller = CharacterManager.Instance.Player.controller;
+        condition = CharacterManager.Instance.Player.condition;
+        dropPosition = CharacterManager.Instance.Player.dropPosition;
 
         controller.Inventory += Toggle;
-        CharacterManager.Instance.Player.AddItem += AddItem;
+        CharacterManager.Instance.Player.addItem += AddItem;
 
         inventoryWindow.SetActive(false);
         slots = new ItemSlot[slotPanel.childCount];
@@ -82,9 +82,8 @@ public class UIInventory : MonoBehaviour
 
     private void AddItem()
     {
-        ItemData data = CharacterManager.Instance.Player.ItemData;
+        ItemData data = CharacterManager.Instance.Player.itemData;
 
-        // 아이템이 중복 가능한지 canStack
         if (data.canStack)
         {
             ItemSlot slot = GetItemStack(data);
@@ -92,25 +91,24 @@ public class UIInventory : MonoBehaviour
             {
                 slot.quantity++;
                 UpdateUI();
-                CharacterManager.Instance.Player.ItemData = null;
+                CharacterManager.Instance.Player.itemData = null;
                 return;
             }
         }
-        // 비어있는 슬롯을 가져온다.
+
         ItemSlot emptySlot = GetEmptySlot();
 
-        // 비어있는 슬롯이 있다면
         if (emptySlot != null)
         {
             emptySlot.item = data;
             emptySlot.quantity = 1;
             UpdateUI();
-            CharacterManager.Instance.Player.ItemData = null;
+            CharacterManager.Instance.Player.itemData = null;
             return;
         }
-        // 없다면
+
         ThrowItem(data);
-        CharacterManager.Instance.Player.ItemData = null;
+        CharacterManager.Instance.Player.itemData = null;
     }
 
     private void UpdateUI()
@@ -235,7 +233,7 @@ public class UIInventory : MonoBehaviour
 
         slots[selectedItemIndex].equipped = true;
         curEquipIndex = selectedItemIndex;
-        CharacterManager.Instance.Player.Equip.EquipNew(selectedItem);
+        CharacterManager.Instance.Player.equip.EquipNew(selectedItem);
         UpdateUI();
 
         SelectItem(selectedItemIndex);
@@ -244,7 +242,7 @@ public class UIInventory : MonoBehaviour
     private void UnEquip(int index)
     {
         slots[index].equipped = false;
-        CharacterManager.Instance.Player.Equip.UnEquip();
+        CharacterManager.Instance.Player.equip.UnEquip();
         UpdateUI();
 
         if (selectedItemIndex == index)

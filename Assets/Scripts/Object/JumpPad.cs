@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class JumpPad : UtilObject
 {
-    [SerializeField] public float bounceForce;
+    [SerializeField] private float bounceForce;
 
     private void OnCollisionEnter(Collision collision)
     {

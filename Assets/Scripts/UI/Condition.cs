@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class Condition : MonoBehaviour
 {
-    public float CurValue;
-    public float MaxValue;
-    public float StartValue;
-    public float PassiveValue;
+    public float curValue;
+    public float maxValue;
+    public float startValue;
+    public float passiveValue;
     public Image UIBar;
 
     private void Start()
     {
-        CurValue = StartValue;
+        curValue = startValue;
     }
 
     private void Update()
@@ -21,16 +21,16 @@ public class Condition : MonoBehaviour
 
     public void Add(float amount)
     {
-        CurValue = Mathf.Min(CurValue + amount, MaxValue);
+        curValue = Mathf.Min(curValue + amount, maxValue);
     }
 
     public void Subtract(float amount)
     {
-        CurValue = Mathf.Max(CurValue - amount, 0.0f);
+        curValue = Mathf.Max(curValue - amount, 0.0f);
     }
 
     public float GetPercentage()
     {
-        return CurValue / MaxValue;
+        return curValue / maxValue;
     }
 }

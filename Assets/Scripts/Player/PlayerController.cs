@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lookSensitivity;
     private float camCurXRot;
     private Vector2 mouseDelta;
-    public bool CanLook = true;
+    public bool canLook = true;
 
     public Action Inventory;
     public Rigidbody _rigidbody;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGliding)
         {
-            CharacterManager.Instance.Player.Condition.UseStamina(useStamina * Time.deltaTime);
+            CharacterManager.Instance.Player.condition.UseStamina(useStamina * Time.deltaTime);
         }
     }
 
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (CanLook)
+        if (canLook)
         {
             CameraLook();
         }
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (IsGrounded() && CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
+        if (IsGrounded() && CharacterManager.Instance.Player.condition.CanUseStamina(useStamina))
         {
             if (context.duration < 0.2f)
             {
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
             if (context.phase == InputActionPhase.Performed)
             {
-                CharacterManager.Instance.Player.Condition.UseStamina(useStamina);
+                CharacterManager.Instance.Player.condition.UseStamina(useStamina);
                 _rigidbody.AddForce(Vector2.up * jumpPower * holdingTime, ForceMode.Impulse);
             }
         }
@@ -111,12 +111,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnGliding(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && !IsGrounded() && CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
+        if (context.phase == InputActionPhase.Performed && !IsGrounded() && CharacterManager.Instance.Player.condition.CanUseStamina(useStamina))
         {
             isGliding = true;
             _rigidbody.drag = 15f;
         }
-        else if (context.phase == InputActionPhase.Canceled || IsGrounded() || !CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
+        else if (context.phase == InputActionPhase.Canceled || IsGrounded() || !CharacterManager.Instance.Player.condition.CanUseStamina(useStamina))
         {
             isGliding = false;
             _rigidbody.drag = 0f;
@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
-        CanLook = !toggle;
+        canLook = !toggle;
     }
 
     public void BuffSize(float buffValue)
