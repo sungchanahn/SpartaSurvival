@@ -19,15 +19,15 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        hunger.Subtract(hunger.PassiveValue * Time.deltaTime);
-        stamina.Add(stamina.PassiveValue * Time.deltaTime);
+        hunger.Subtract(hunger.passiveValue * Time.deltaTime);
+        stamina.Add(stamina.passiveValue * Time.deltaTime);
 
-        if (hunger.CurValue < 0.0f)
+        if (hunger.curValue < 0.0f)
         {
             stamina.Subtract(noHungerStaminaDecay * Time.deltaTime);
         }
 
-        if (health.CurValue < 0.0f)
+        if (health.curValue < 0.0f)
         {
             Die();
         }
@@ -61,7 +61,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public bool CanUseStamina(float useStamina)
     {
-        if (stamina.CurValue < useStamina)
+        if (stamina.curValue < useStamina)
         {
             return false;
         }

@@ -14,6 +14,6 @@ public class LaunchPad : UtilObject
     private void UtilizeLaunchPad()
     {
         Vector3 force = Vector3.up * launchForce;
-        CharacterManager.Instance.Player.Controller._rigidbody.AddForce(force, ForceMode.Impulse);
+        CharacterManager.Instance.Player.controller._rigidbody.AddForce(force, ForceMode.Impulse);
     }
 }

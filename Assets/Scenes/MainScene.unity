@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 18327775}
   - component: {fileID: 18327777}
   - component: {fileID: 18327778}
+  - component: {fileID: 18327779}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -320,7 +321,19 @@ MonoBehaviour:
     m_ActionId: 54bbbee1-dd7c-420e-ac9f-3f5126e44e26
     m_ActionName: Player/Interaction[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 18327779}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3512f08b-81d1-4975-afa0-c8970ac43248
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -371,7 +384,7 @@ MonoBehaviour:
   minXLook: -75
   maxXLook: 85
   lookSensitivity: 0.1
-  CanLook: 1
+  canLook: 1
   _rigidbody: {fileID: 0}
 --- !u!114 &18327776
 MonoBehaviour:
@@ -385,11 +398,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f13cb0a20a2b94ba17d6a16b72bd9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller: {fileID: 0}
-  Condition: {fileID: 0}
-  Equip: {fileID: 0}
-  ItemData: {fileID: 0}
-  DropPosition: {fileID: 1576616587}
+  controller: {fileID: 0}
+  condition: {fileID: 0}
+  equip: {fileID: 0}
+  itemData: {fileID: 0}
+  dropPosition: {fileID: 1576616587}
 --- !u!114 &18327777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94ea73f07797814f8842d6e2ee7395a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UICondition: {fileID: 0}
+  uiCondition: {fileID: 0}
   noHungerStaminaDecay: 2.5
 --- !u!114 &18327778
 MonoBehaviour:
@@ -423,6 +436,103 @@ MonoBehaviour:
     m_Bits: 256
   curInteractGameObject: {fileID: 0}
   promptText: {fileID: 2110125224}
+--- !u!114 &18327779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18327770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33c8e7598a0c5d4b96acf2f2d0ef813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 33806526}
+--- !u!1 &33806525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 33806526}
+  - component: {fileID: 33806528}
+  m_Layer: 7
+  m_Name: EquipCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &33806526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33806525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2068537134}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &33806528
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33806525}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &111022699
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,9 +874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbab14eff68486c40ac3e1e1caf9cad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 1499641095}
-  Hunger: {fileID: 225369490}
-  Stamina: {fileID: 616677170}
+  health: {fileID: 1499641095}
+  hunger: {fileID: 225369490}
+  stamina: {fileID: 616677170}
 --- !u!1 &148483118
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,10 +1024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae8cf4be17803a4eab97017d2377230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurValue: 0
-  MaxValue: 400
-  StartValue: 400
-  PassiveValue: 10
+  curValue: 0
+  maxValue: 400
+  startValue: 400
+  passiveValue: 5
   UIBar: {fileID: 1245259389}
 --- !u!1001 &232313201
 PrefabInstance:
@@ -1960,10 +2070,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae8cf4be17803a4eab97017d2377230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurValue: 0
-  MaxValue: 100
-  StartValue: 100
-  PassiveValue: 5
+  curValue: 0
+  maxValue: 100
+  startValue: 100
+  passiveValue: 3
   UIBar: {fileID: 599075866}
 --- !u!1 &660948760
 GameObject:
@@ -4557,10 +4667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae8cf4be17803a4eab97017d2377230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurValue: 0
-  MaxValue: 100
-  StartValue: 100
-  PassiveValue: 1
+  curValue: 0
+  maxValue: 100
+  startValue: 100
+  passiveValue: 0.1
   UIBar: {fileID: 440113613}
 --- !u!1 &1533877277
 GameObject:
@@ -6088,6 +6198,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
+  - {fileID: 33806526}
   m_Father: {fileID: 18327771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084735577
@@ -12922,10 +13033,10 @@ SceneRoots:
   - {fileID: 501295246955241382}
   - {fileID: 894001589}
   - {fileID: 7279203036674122201}
-  - {fileID: 7136657609123931272}
-  - {fileID: 1014624075560046550}
   - {fileID: 6375771856747970263}
   - {fileID: 2020985143745994139}
   - {fileID: 164997276298955672}
+  - {fileID: 7136657609123931272}
+  - {fileID: 1014624075560046550}
   - {fileID: 3425960180086156703}
   - {fileID: 681256688}

@@ -29,9 +29,9 @@ public class EquipTool : Equip
     {
         if (!attacking)
         {
-            if (CharacterManager.Instance.Player.Condition.CanUseStamina(useStamina))
+            if (CharacterManager.Instance.Player.condition.CanUseStamina(useStamina))
             {
-                CharacterManager.Instance.Player.Condition.UseStamina(useStamina);
+                CharacterManager.Instance.Player.condition.UseStamina(useStamina);
                 attacking = true;
                 animator.SetTrigger("Attack");
                 Invoke("OnCanAttack", attackRate);

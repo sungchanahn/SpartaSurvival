@@ -32,7 +32,7 @@ public class Equipment : MonoBehaviour
 
     public void OnAttackInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.CanLook)
+        if (context.phase == InputActionPhase.Performed && curEquip != null && controller.canLook)
         {
             curEquip.OnAttackInput();
         }
