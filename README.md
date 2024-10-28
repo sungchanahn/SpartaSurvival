@@ -1,4 +1,5 @@
 # SpartaSurvival
+이름을 SpartaSurvival로 지었으나 JumpMap만 구현됨
 
 #### 키 가이드
 - WASD : 전후좌우 움직임
