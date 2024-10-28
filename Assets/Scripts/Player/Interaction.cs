@@ -13,11 +13,11 @@ public class Interaction : MonoBehaviour
     private IInteractable curInteractable;
 
     public TextMeshProUGUI promptText;
-    private Camera camera;
+    private ViewController view;
 
-    private void Start()
+    private void Awake()
     {
-        camera = Camera.main;
+        view = GetComponent<ViewController>();
     }
 
     private void Update()
@@ -26,10 +26,10 @@ public class Interaction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            Ray ray = view.camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Physics.Raycast(ray, out hit, maxCheckDistance - view.camera.transform.localPosition.z, layerMask))
             {
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
